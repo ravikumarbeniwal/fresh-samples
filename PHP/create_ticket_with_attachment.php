@@ -4,6 +4,16 @@ $api_key = "API_KEY";
 $password = "x";
 $yourdomain = "YOUR_DOMAIN";
 
+/*Function required.*/
+if (!function_exists('curl_file_create')) {
+    function curl_file_create($filename, $mimetype = '', $postname = '') {
+        return "@$filename;filename="
+            . ($postname ?: basename($filename))
+            . ($mimetype ? ";type=$mimetype" : '');
+    }
+}
+/* Fn End */
+
 $ticket_payload = array(
   'email' => 'test@example.com',
   'subject' => 'test',
